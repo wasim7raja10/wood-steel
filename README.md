@@ -1,5 +1,8 @@
-##Wood 'N Steel
+# Wood-Steel
+
+E-Commerce Store
 
 Contributors
-- [Wasim Raja]( https://github.com/wasim7raja10)
+
+- [Wasim Raja](https://github.com/wasim7raja10)
 - [Devkant Swargiary](https://github.com/Devkant21)
