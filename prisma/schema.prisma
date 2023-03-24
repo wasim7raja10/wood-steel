@@ -12,46 +12,39 @@ datasource db {
 }
 
 model Category {
-  id    String  @id @default(cuid())
-  name  String
-  slug  String  @unique
-  image String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  image         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
   subcategories SubCategory[]
 }
 
 model SubCategory {
-  id    String  @id @default(cuid())
-  name  String
-  slug  String  @unique
-  image String?
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  categoryId String   @unique
-  category   Category @relation(fields: [categoryId], references: [id])
-
-  products Product[]
+  id         String    @id @default(cuid())
+  name       String
+  slug       String    @unique
+  image      String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  categoryId String    @unique
+  category   Category  @relation(fields: [categoryId], references: [id])
+  products   Product[]
 
   @@index([categoryId])
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  name        String
-  description String?
-  price       Float
-  image       String?
-  rating      Float?
-  review      Review[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String      @id @default(cuid())
+  name          String
+  description   String?
+  price         Float
+  image         String?
+  rating        Float?
+  review        Review[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   subCategoryId String      @unique
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   OrderItem     OrderItem?
@@ -60,55 +53,47 @@ model Product {
 }
 
 model Review {
-  id      String  @id @default(cuid())
-  name    String
-  rating  Float
-  comment String?
-
+  id        String   @id @default(cuid())
+  name      String
+  rating    Float
+  comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  productId String  @unique
-  product   Product @relation(fields: [productId], references: [id])
-
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
+  productId String   @unique
+  product   Product  @relation(fields: [productId], references: [id])
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
 
   @@index([productId])
   @@index([userId])
 }
 
 model User {
-  id          String  @id @default(cuid())
+  id          String   @id @default(cuid())
   name        String
-  email       String  @unique
+  email       String   @unique
   password    String
-  isAdmin     Boolean @default(false)
+  isAdmin     Boolean  @default(false)
   image       String?
-  phoneNumber String? @db.VarChar(12)
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  token String?
-
-  orders  Order[]
-  reviews Review[]
+  phoneNumber String?  @db.VarChar(12)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  token       String?
+  orders      Order[]
+  reviews     Review[]
 }
 
 model Order {
-  id          String    @id @default(cuid())
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
-  isPaid      Boolean   @default(false)
+  id          String      @id @default(cuid())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  isPaid      Boolean     @default(false)
   paidAt      DateTime?
-  isDelivered Boolean   @default(false)
+  isDelivered Boolean     @default(false)
   deliveredAt DateTime?
-
-  userId String @unique
-  user   User   @relation(fields: [userId], references: [id])
-
-  orderItems OrderItem[]
+  userId      String      @unique
+  user        User        @relation(fields: [userId], references: [id])
+  orderItems  OrderItem[]
 
   @@index([userId])
 }
@@ -120,9 +105,8 @@ model OrderItem {
   updatedAt DateTime @updatedAt
   productId String   @unique
   product   Product  @relation(fields: [productId], references: [id])
-
-  orderId String @unique
-  order   Order  @relation(fields: [orderId], references: [id])
+  orderId   String   @unique
+  order     Order    @relation(fields: [orderId], references: [id])
 
   @@index([orderId])
 }
