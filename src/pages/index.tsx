@@ -6,10 +6,6 @@ import { api } from "~/utils/api";
 const Home: NextPage = () => {
   const { data, isFetching } = api.category.getAll.useQuery();
 
-  if (isFetching) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <>
       <Head>
