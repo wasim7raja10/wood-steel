@@ -75,7 +75,7 @@ model User {
   password    String
   isAdmin     Boolean  @default(false)
   image       String?
-  phoneNumber String?  @db.VarChar(12)
+  phoneNumber String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   token       String?
