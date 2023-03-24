@@ -4,7 +4,11 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 
 const Home: NextPage = () => {
-  const { data } = api.category.getAll.useQuery();
+  const { data, isFetching } = api.category.getAll.useQuery();
+
+  if (isFetching) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
