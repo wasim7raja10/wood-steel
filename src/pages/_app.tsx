@@ -1,4 +1,5 @@
 import { type AppType } from "next/app";
+import { ClerkProvider } from "@clerk/nextjs";
 
 import { api } from "~/utils/api";
 
@@ -7,9 +8,11 @@ import Layout from "~/components/layouts/Layout";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <ClerkProvider {...pageProps}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ClerkProvider>
   );
 };
 
