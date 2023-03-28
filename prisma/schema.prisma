@@ -41,15 +41,29 @@ model Product {
   description   String?
   price         Float
   image         String?
+  material      String?
+  color         String?
   rating        Float?
   review        Review[]
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
   subCategoryId String      @unique
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
-  OrderItem     OrderItem?
+  orderItem     OrderItem?
+  dimension     Dimension?
 
   @@index([subCategoryId])
+}
+
+model Dimension {
+  id        String  @id @default(cuid())
+  length    Float
+  width     Float
+  height    Float
+  productId String  @unique
+  product   Product @relation(fields: [productId], references: [id])
+
+  @@index([productId])
 }
 
 model Review {
@@ -64,8 +78,7 @@ model Review {
   userId    String   @unique
   user      User     @relation(fields: [userId], references: [id])
 
-  @@index([productId])
-  @@index([userId])
+  @@index([productId, userId])
 }
 
 model User {
