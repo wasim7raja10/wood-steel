@@ -2,6 +2,9 @@
   "name": "wood-steel",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "build": "next build",
     "dev": "next dev",
