@@ -28,7 +28,7 @@ model SubCategory {
   image      String?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
-  categoryId String    @unique
+  categoryId String    
   category   Category  @relation(fields: [categoryId], references: [id])
   products   Product[]
 
@@ -47,7 +47,7 @@ model Product {
   review        Review[]
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  subCategoryId String      @unique
+  subCategoryId String      
   subCategory   SubCategory @relation(fields: [subCategoryId], references: [id])
   orderItem     OrderItem?
   dimension     Dimension?
