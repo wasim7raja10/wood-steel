@@ -23,7 +23,7 @@ const categories = [
     name: "Decor",
     slug: "decor",
     image: "https://example.com/images/decor.jpg",
-  }
+  },
 ];
 
 export default categories;
