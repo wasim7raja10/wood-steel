@@ -20,7 +20,10 @@ const Home: NextPage = () => {
       </Head>
       <main className="">
         {data?.map((category) => (
-          <div key={category.id}>{category.name}</div>
+          <div key={category.id}>
+            <h1>{category.name}</h1>
+            
+          </div>
         ))}
       </main>
     </>
