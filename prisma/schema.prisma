@@ -88,15 +88,9 @@ model User {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   token       String?
+  role        Role     @default(BUYER)
   orders      Order[]
   reviews     Review[]
-  role        Role     @default(BUYER)
-}
-
-enum Role {
-  BUYER
-  SELLER
-  ADMIN
 }
 
 model Order {
@@ -125,4 +119,10 @@ model OrderItem {
   order     Order    @relation(fields: [orderId], references: [id])
 
   @@index([orderId])
+}
+
+enum Role {
+  BUYER
+  SELLER
+  ADMIN
 }
