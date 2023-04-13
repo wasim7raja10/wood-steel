@@ -5,7 +5,7 @@ export default function ProductCat() {
   const router = useRouter();
   const { productcat } = router.query;
 
-  const slug= productcat as string;
+  const slug = productcat as string;
 
   const { data } = api.category.getById.useQuery({ slug });
   return (
