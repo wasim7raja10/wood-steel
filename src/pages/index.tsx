@@ -1,5 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
+import Link from "next/link";
 
 import { api } from "~/utils/api";
 
@@ -21,8 +22,7 @@ const Home: NextPage = () => {
       <main className="">
         {data?.map((category) => (
           <div key={category.id}>
-            <h1>{category.name}</h1>
-            
+            <Link href={`/${category.slug}`}>{category.name}</Link>
           </div>
         ))}
       </main>

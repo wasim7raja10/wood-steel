@@ -5,18 +5,18 @@ export const categoryRouter = createTRPCRouter({
   getById: publicProcedure
     .input(
       z.object({
-        id: z.string(),
+        slug: z.string(),
       })
     )
-    .query(({ ctx, input }) => {
-      const category = ctx.prisma.category.findUnique({
+    .query(async ({ ctx, input }) => {
+      const category = await ctx.prisma.category.findUnique({
         where: {
-          id: input.id,
+          slug: input.slug,
         },
       });
-      const subcategories = ctx.prisma.subCategory.findMany({
+      const subcategories = await ctx.prisma.subCategory.findMany({
         where: {
-          categoryId: input.id,
+          categoryId: category?.id,
         },
       });
       return {
